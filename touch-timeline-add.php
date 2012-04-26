@@ -11,22 +11,6 @@ Description: Addon for the Plugin <a href="http://www.nikolaydyankov.com/">Touch
 define( 'TIMELINE_ADD_VERSION', 0.1 );
 
 function timeline_add_create_post_type() {
-    register_post_type(
-        'eventi',
-        array(
-            'labels' => array(
-                'name' => 'Eventi',
-                'singular_name' => 'Evento',
-            ),
-            'public' => true,
-            'has_archive' => true,
-            'rewrite' => array( 'slug' => 'eventi' ),
-        )
-    );
-}
-add_action( 'init', 'timeline_add_create_post_type', 10, 0 );
-
-function timeline_add_build_taxonomies() {  
     register_taxonomy(
         'tipo',
         'eventi',
@@ -37,6 +21,23 @@ function timeline_add_build_taxonomies() {
             'rewrite' => array( 'slug' => 'tipo' ),
         )
     );
+    register_post_type(
+        'eventi',
+        array(
+            'labels' => array(
+                'name' => 'Eventi',
+                'singular_name' => 'Evento',
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'taxonomies' => array( 'tipo' ),
+            'rewrite' => array( 'slug' => 'eventi' ),
+        )
+    );
+}
+add_action( 'init', 'timeline_add_create_post_type', 10, 0 );
+
+function timeline_add_build_taxonomies() {  
 }
 add_action( 'init', 'timeline_add_build_taxonomies', 10, 0 );
 
