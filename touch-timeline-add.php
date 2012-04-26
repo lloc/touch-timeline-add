@@ -49,12 +49,9 @@ function timeline_add_refresh_plugin() {
 add_action( 'init', 'timeline_add_refresh_plugin', 11, 0 );
 
 function timeline_add_shortcode( $attr ) {
-    global $touch_timeline, $post;
     extract( shortcode_atts( array( 'tipo' => 'live' ), $atts ) );
-    $tmp     = $post;
-    $options = $touch_timeline->get_admin_options();
+    query_posts( array( 'post_type' => 'eventi', 'tipo' => $tipo ) ); 
     $result  = '<div class="timeline-wrap">';
-    $events  = query_posts( array( 'post_type' => 'eventi', 'tipo' => $tipo ) ); 
     if ( have_posts() ) {
         while ( have_posts() ) {
             the_post();
@@ -64,7 +61,7 @@ function timeline_add_shortcode( $attr ) {
             $result .= '</div>';
         }
     }
-    $post    = $tmp;
+    wp_reset_query();
     $result .= '</div>';
     return $result;
 }
