@@ -49,10 +49,10 @@ function timeline_add_refresh_plugin() {
 }
 add_action( 'init', 'timeline_add_refresh_plugin', 11, 0 );
 
-function timeline_add_shortcode( $attr ) {
+function timeline_add_shortcode( $atts ) {
     extract( shortcode_atts( array( 'tipo' => 'live' ), $atts ) );
     $result  = '<div class="timeline-wrap">';
-    query_posts( array( 'post_type' => 'eventi', 'tipo' => 'open-air' ) );
+    query_posts( array( 'post_type' => 'eventi', 'tipo' => $tipo ) );
     if ( have_posts() ) {
         while ( have_posts() ) {
             the_post();
