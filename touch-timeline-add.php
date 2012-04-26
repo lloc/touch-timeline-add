@@ -48,27 +48,25 @@ function timeline_add_refresh_plugin() {
 }
 add_action( 'init', 'timeline_add_refresh_plugin', 11, 0 );
 
-if ( function_exists( 'timeline_shortcode' ) && !function_exists( 'timeline_add_shortcode' ) ) {
-    function timeline_add_shortcode( $attr ) {
-        global $touch_timeline;
-        extract( shortcode_atts( array( 'tipo' => 'live' ), $atts ) );
-        $options = $touch_timeline->get_admin_options();
-        $result  = '<div class="timeline-wrap">';
-        $events  = query_posts( array( 'post_type' => 'eventi', 'tipo' => $tipo ) ); 
-        if ( have_posts() ) {
-            while ( have_posts() ) {
-                the_post();
-                $result .= '<div class="timeline-event">';
-                $result .= '<div class="timeline-title">' . the_title() . '</div>';
-                $result .= '<div class="timeline-content">' . the_content() . '</div>';
-                $result .= '</div>';
-            }
+function timeline_add_shortcode( $attr ) {
+    global $touch_timeline;
+    extract( shortcode_atts( array( 'tipo' => 'live' ), $atts ) );
+    $options = $touch_timeline->get_admin_options();
+    $result  = '<div class="timeline-wrap">';
+    $events  = query_posts( array( 'post_type' => 'eventi', 'tipo' => $tipo ) ); 
+    if ( have_posts() ) {
+        while ( have_posts() ) {
+            the_post();
+            $result .= '<div class="timeline-event">';
+            $result .= '<div class="timeline-title">' . the_title() . '</div>';
+            $result .= '<div class="timeline-content">' . the_content() . '</div>';
+            $result .= '</div>';
         }
-        wp_reset_query();
-        $result .= '</div>';
-        return $result;
     }
-    add_shortcode( 'touch_timeline_add', 'timeline_add_shortcode' );
+    wp_reset_query();
+    $result .= '</div>';
+    return $result;
 }
+add_shortcode( 'touch_timeline_add', 'timeline_add_shortcode' );
 
 ?>
