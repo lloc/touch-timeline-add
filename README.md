@@ -1,4 +1,4 @@
 touch-timeline-add
 ==================
 
-WordPress-Plugin: Addon for the Touch Timeline Plugin
+Addon for the Plugin (Touch Timeline for WordPress)[http://www.nikolaydyankov.com/] by Nikolay Dyankov
