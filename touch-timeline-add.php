@@ -34,7 +34,7 @@ function timeline_add_build_taxonomies() {
             'hierarchical' => true,
             'label' => 'Tipo',
             'query_var' => true,
-            'rewrite' => true,
+            'rewrite' => array( 'slug' => 'tipo' ),
         )
     );
 }
