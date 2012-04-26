@@ -29,7 +29,7 @@ add_action( 'init', 'timeline_add_create_post_type', 10, 0 );
 function timeline_add_build_taxonomies() {  
     register_taxonomy(
         'Tipo',
-        'tipo',
+        'eventi',
         array(
             'hierarchical' => true,
             'label' => 'Tipo',
