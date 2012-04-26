@@ -52,7 +52,7 @@ add_action( 'init', 'timeline_add_refresh_plugin', 11, 0 );
 function timeline_add_shortcode( $attr ) {
     extract( shortcode_atts( array( 'tipo' => 'live' ), $atts ) );
     $result  = '<div class="timeline-wrap">';
-    query_posts( array( 'post_type' => 'eventi', 'tax_query' => array( 'taxonomy' => 'tipo', 'field' => 'slug', 'terms' => $tipo ) ) );
+    query_posts( array( 'post_type' => 'eventi', 'tipo' => 'open-air' ) );
     if ( have_posts() ) {
         while ( have_posts() ) {
             the_post();
