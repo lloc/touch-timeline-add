@@ -57,7 +57,7 @@ function timeline_add_shortcode( $attr ) {
             the_post();
             $result .= '<div class="timeline-event">';
             $result .= '<div class="timeline-title">' . get_the_title() . '</div>';
-            $result .= '<div class="timeline-content">' . get_content() . '</div>';
+            $result .= '<div class="timeline-content">' . get_the_content() . '</div>';
             $result .= '</div>';
         }
     }
